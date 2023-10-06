@@ -15,4 +15,23 @@ export class AppController {
   getIndex(){
     return{ message: "HEllO WORILD"};
   }
+
+  @Get("/post")
+  @Render("post")
+  getPost(){
+    return{ message: "HEllO WORILD"};
+  }
+
+  @Get("/about")
+  @Render("about")
+  getAbout(){
+    return{ message: "HEllO WORILD"};
+  }
+
+  @Get("/contact")
+  @Render("contact")
+  getContact(){
+    return{ message: "HEllO WORILD"};
+  }
+
 }

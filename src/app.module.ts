@@ -9,8 +9,8 @@ import {MybatisModule} from "./database/mybatis.module";
 import {MybatisService} from "./database/mybatis.service";
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
-import {UsersService} from "./users/users.service";
-import {userDAO} from "./users/users.dao";
+import { UsersService } from "./users/users.service";
+import { userDAO } from "./users/users.dao";
 
 @Module({
   imports: [
