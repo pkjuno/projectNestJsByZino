@@ -1,8 +1,19 @@
-import { Module } from '@nestjs/common';
+import {DynamicModule, Module} from '@nestjs/common';
 import { MybatisService } from './mybatis.service';
 
-@Module({
-    providers: [MybatisService],
-    exports: [MybatisService],
-})
-export class MybatisModule {}
+@Module({})
+export class MybatisModule {
+    static register(options:string):DynamicModule{
+        return{
+            module : MybatisModule,
+            providers: [
+                {
+                    provide: 'MAPPER_PATH',
+                    useValue: options,
+                },
+                MybatisService
+            ],
+            exports: [MybatisService],
+        }
+    }
+}

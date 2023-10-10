@@ -1,15 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import {MybatisService} from "../database/mybatis.service";
-import {userDAO} from "./users.dao";
+import { MybatisService } from "../database/mybatis.service";
 
 @Injectable()
 export class UsersService {
-    constructor(private userDao:userDAO) {
-    }
+
+    private readonly mapperPath = "src/database/mapper/user/userMapper.xml";
+    private readonly nameSpace= "userMapper";
+    constructor(private mybatisService:MybatisService) {}
 
     async selectFindUser(){
         console.log("SERVICE");
-        this.userDao.findAll();
+
+        const params = {
+            userId : "123"
+        };
+
+        const result = this.mybatisService.query(this.mapperPath, this.nameSpace, "selectUser" , params );
+        console.log("USER SERVICE RESULT ::::   " ,result);
     }
 
 }

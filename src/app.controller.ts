@@ -12,7 +12,7 @@ export class AppController {
 
   @Get("/index")
   @Render("index")
-  getIndex(){
+  async getIndex(){
     return{ message: "HEllO WORILD"};
   }
 

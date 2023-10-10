@@ -1,25 +1,24 @@
 import { Inject, Injectable } from '@nestjs/common';
-import * as mysql from 'mysql2/promise';
 import { createPool } from 'mysql2/promise';
 import * as mybatisMapper from 'mybatis-mapper';
 import { ConfigService } from '@nestjs/config';
 import { Params } from "mybatis-mapper";
 
+
 @Injectable()
 export class MybatisService {
     private readonly pool;
-    private readonly mybatisMapper;
-    constructor(
-        private configService: ConfigService
+
+    constructor(private configService: ConfigService
     ) {
         console.log('START CONNECTION');
-        console.log(mysql);
-        console.log(this.configService.get('MYSQL_HOST'));
-        console.log(this.configService.get('MYSQL_USER'));
-        console.log(this.configService.get('MYSQL_PASSWORD'));
-        console.log(this.configService.get('MYSQL_PORT'));
-        console.log(this.configService.get('MYSQL_DATABASE'));
-        console.log(this.configService.get('MYSQL_CONNECTION_LIST'));
+        // console.log(mysql);
+        // console.log(this.configService.get('MYSQL_HOST'));
+        // console.log(this.configService.get('MYSQL_USER'));
+        // console.log(this.configService.get('MYSQL_PASSWORD'));
+        // console.log(this.configService.get('MYSQL_PORT'));
+        // console.log(this.configService.get('MYSQL_DATABASE'));
+        // console.log(this.configService.get('MYSQL_CONNECTION_LIST'));
 
         this.pool = createPool({
             host: this.configService.get('MYSQL_HOST'),
@@ -30,17 +29,17 @@ export class MybatisService {
             connectionLimit: this.configService.get('MYSQL_CONNECTION_LIST'),
         });
 
-        mybatisMapper.createMapper(['src/database/mapper/users/usersMapper.xml']);
+        console.log('SUCCESS CONNECTION');
     }
 
-    async query(sqlId: string, params?: Params) {
+    async query(mapperPath:string, nameSpace:string, sqlId: string, params?: Params) {
+        mybatisMapper.createMapper([mapperPath]);
 
         const conn = await this.pool.getConnection();
         try {
-            const query = await mybatisMapper.getStatement('usersMapper', 'selectUser', params);
+            const query = await mybatisMapper.getStatement(nameSpace, sqlId, params);
             const resultMap = await conn.query(query, params);
-            console.log("RESSULT:::::", query);
-            console.log('RESULT:::::', resultMap);
+            console.log("QUERY LOG :::: [ "+ query +" ]");
             return resultMap[0];
         } finally {
             conn.release();

@@ -5,12 +5,11 @@ import { AppService } from './app.service';
 import config from './config/config';
 
 import * as process from 'process';
-import {MybatisModule} from "./database/mybatis.module";
-import {MybatisService} from "./database/mybatis.service";
-import { UsersController } from './users/users.controller';
+import { MybatisService } from "./database/mybatis.service";
 import { UsersModule } from './users/users.module';
-import { UsersService } from "./users/users.service";
-import { userDAO } from "./users/users.dao";
+import {MybatisModule} from "./database/mybatis.module";
+
+
 
 @Module({
   imports: [
@@ -21,10 +20,9 @@ import { userDAO } from "./users/users.dao";
       expandVariables: true,
       load:[config]
     }),
-      MybatisModule,
       UsersModule
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService, userDAO, MybatisService],
+  controllers: [AppController],
+  providers: [AppService, MybatisService],
 })
 export class AppModule {}

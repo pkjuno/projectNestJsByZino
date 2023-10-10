@@ -24,21 +24,20 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="my-5">
-                    <form id="loginForm" method="post">
                         <div class="form-floating">
-                            <input class="form-control" id="userId" type="text" placeholder="Enter your id..." />
-                            <label for="userId">ID</label>
+                            <input class="form-control" id="userId" name="userId" type="text" placeholder="Enter your id..." />
+                            <label for="userId">아이디</label>
                             <div class="invalid-feedback" data-sb-feedback="name:required">A ID is required.</div>
                         </div>
                         <div class="form-floating">
-                            <input class="form-control" id="password" type="email" placeholder="Enter your password..."/>
-                            <label for="password">PASSWORD</label>
+                            <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password..."/>
+                            <label for="password">비밀번호</label>
                             <div class="invalid-feedback" data-sb-feedback="email:required">An PASSWORD is required.</div>
                         </div>
                         <br />
                         <!-- Submit success message-->
                         <!---->
-                        <!-- This is what your users will see when the form-->
+                        <!-- This is what your user will see when the form-->
                         <!-- has successfully submitted-->
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
@@ -50,12 +49,11 @@
                         </div>
                         <!-- Submit error message-->
                         <!---->
-                        <!-- This is what your users will see when there is-->
+                        <!-- This is what your user will see when there is-->
                         <!-- an error submitting the form-->
                         <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                         <!-- Submit Button-->
                         <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">LogIn</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -71,9 +69,27 @@
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script src="../js/util.js"></script>
 <script>
-    $(function(){
+    function inputNullCheck(strNameArr, strInputAr)
+    {
 
+        return true;
+    }
+
+    $(function(){
+        $("#submitButton").click(function(){
+            const userId = $("#userId").val();
+            const password = $("#password").val();
+
+            if(userId === "" && password ===""){
+                alert("아이디 /  비밀번호를 입력해주세요");
+                return false;
+            }else{
+
+            }
+
+        });
     });
 </script>
 </body>

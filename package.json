@@ -27,6 +27,7 @@
     "express-handlebars": "^7.1.2",
     "hbs": "^4.2.0",
     "mybatis-mapper": "^0.7.1",
+    "mybatis3": "^0.2.2",
     "mysql": "^2.18.1",
     "mysql2-promise": "^0.1.4",
     "pg": "^8.11.3",

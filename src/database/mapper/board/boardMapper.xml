@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baordMapper">
+
+
+    <!-- Define your SQL queries here -->
+    <select id="selectBoardList" resultType="hashMap">
+         SELECT BOARD_SNO           AS BOARDSNO,
+                BOARD_TITLE         AS BOARDTITLE,
+                BOARD_CONTENTS      AS BOARDCONTENTS,
+                BOARD_REGI_USER_ID  AS BOARDREGIUSERID,
+                BOARD_REGI_DATE     AS BOARDREGIDATE,
+                BOARD_MODI_USER_ID  AS BOARDMODIUSERID,
+                BOARD_MODI_DATE     AS BOARDMODIATE,
+                BOARD_VIEWS         AS BOARDVIEWS
+           FROM TBL_BOARD
+         ORDER BY BOARD_SNO DESC
+    </select>
+
+
+
+</mapper>
